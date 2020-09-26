@@ -1,0 +1,19 @@
+{% block content %}
+<h1 class='pageTitle'>Habits</h1>
+
+<div class='habitsList'>
+
+    {% for note in notes %}
+    <div class='habit'>
+        <h2 class='habitTitle'><a href="{% url 'habit_details' pk=habit.pk %}"
+                style="text-decoration:none">{{ habit.title }}</a></h2>
+        <p class='habitBody'>{{ habit.body|truncatewords:10 }}</p>
+    </div>
+    {% endfor %}
+</div>
+<!-- <div class='spacing'></div> -->
+
+<!-- <br>
+<div class='fab-container'>
+    <button class='newhabit'><a href="{% url 'habits_create' %}" style="text-decoration:none">Add a habit</a></button>
+</div> -->

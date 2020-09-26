@@ -1,0 +1,42 @@
+-implement users as shown by will for convenvience
+
+homepage: {in templates folder}
+-list of current habits being tracked
+-option to create a new habit to track {habit, goal/target}
+-history of tracked habits, ideally shwon in small graphs, each of which serve as a link to a history_detail page with all the past records for that specific habit and some form of visual representation
+-
+
+
+
+Make user form
+Implement registration and login
+mkdir habits
+
+views.py
+urls.py
+base.html
+*_html.py
+
+Task List:
+Habit App folder
+- settings
+- urls
+- migrations
+
+Habit folder
+- admin
+- apps
+- forms
+- models
+- views
+
+Static Folder Linking CSS
+- save styling for near end of project
+
+Templates Folder with html
+- base
+- CRUD
+- list
+
+Users Folder
+- validation
