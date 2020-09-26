@@ -1,0 +1,15 @@
+Project 2: Habit Tracker
+For this project, you will build a Django application that you can use to help track and reinforce daily habits.
+
+Your application should have registration and login.
+Users should be able to create a new habit tracker. Each habit should have a name and a target or goal. What is this "target"? Each habit should have a daily number of some action you want to do. Some examples:
+I want to walk 1000 steps daily
+I want to write 100 lines of code daily
+I want to talk to 2 new people each day
+I want to read 200 pages daily
+I want to sleep 8 hours daily
+Once you have habits, you should be able to make a daily record of your activity on each habit. That record should contain a date and a number for that date.
+A user can only have one record per day per habit. You will need to use the unique_together option to enforce this.
+Optimally, users can edit/update records and add records for previous days.
+Make your interface for this feature as easy to use as possible. For example, if you can choose the date for your record, have it default to the current date.
+On the detail page for a habit, you should be able to see all the records for that habit in an HTML table. Show the user whether they met their goal for that day visually somehow -- maybe via colors. Think about accessibility here -- how would a user that can't see know whether they met their goal each day?
