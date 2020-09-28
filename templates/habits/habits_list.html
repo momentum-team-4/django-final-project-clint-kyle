@@ -3,10 +3,9 @@
 
 <div class='habitsList'>
 
-    {% for note in notes %}
+    {% for habit in habits %}
     <div class='habit'>
-        <h2 class='habitTitle'><a href="{% url 'habit_details' pk=habit.pk %}"
-                style="text-decoration:none">{{ habit.title }}</a></h2>
+        <h2 class='habitTitle'>{{ habit.title }}</h2>
         <p class='habitBody'>{{ habit.body|truncatewords:10 }}</p>
     </div>
     {% endfor %}
