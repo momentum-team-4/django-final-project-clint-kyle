@@ -7,7 +7,7 @@ class Habit(models.Model):
     title = models.CharField(max_length=255, null=False, blank=False)
     body = models.CharField(max_length=255, null=False, blank=False)
 
-    daily_entry = []
+    # daily_entry = []
 
     def __str__(self):
         return f"{self.title}"
