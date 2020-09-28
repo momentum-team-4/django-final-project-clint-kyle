@@ -5,7 +5,8 @@
 
     {% for habit in habits %}
     <div class='habit'>
-        <h2 class='habitTitle'>{{ habit.title }}</h2>
+        <h2 class='habitTitle'><a href="{% url 'habits_detail' pk=habit.pk %}"
+                style="text-decoration:none">{{ habit.title }}</a></h2>
         <p class='habitBody'>{{ habit.body|truncatewords:10 }}</p>
     </div>
     {% endfor %}

@@ -22,8 +22,8 @@ from users import views as users_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', habits_views.habits_list, name='habits_list'),
-    # path('habits/<int:pk>/', habits_views.habits_detail, name='habits_detail'),
-    # path('habits/create/', habits_views.habits_create, name='habits_create'),
+    path('habits/<int:pk>/', habits_views.habits_detail, name='habits_detail'),
+    path('habits/create/', habits_views.habits_create, name='habits_create'),
     # path('habits/update/<int:pk>/',
     #      habits_views.habits_update, name='habits_update'),
     # path('habits/search/', habits_views.habits_search, name='habits_search'),

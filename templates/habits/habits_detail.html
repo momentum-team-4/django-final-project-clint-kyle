@@ -1,7 +1,12 @@
-{% extends "base.html"}
-{%block content%}
+{% extends "base.html" %}
 
-<h1>{{habit.title}}</h1>
-<p>{{habit.body}}</p>
+<h1>Habit Details</h1>
+
+{% block content %}
+
+
+<h2>{{ habit.title }}</h2>
+<p>{{ habit.body }}</p>
 <a href="{% url 'habits_list' %}">Habits</a>
+
 {% endblock %}
