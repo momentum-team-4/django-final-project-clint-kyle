@@ -6,7 +6,8 @@ homepage: {in templates folder}
 -history of tracked habits, ideally shwon in small graphs, each of which serve as a link to a history_detail page with all the past records for that specific habit and some form of visual representation
 -
 
-
+*move base.html outside of templates
+*have users functional for Monday
 
 Make user form
 Implement registration and login

@@ -1,6 +1,4 @@
 -If habitForm has fields for Title (habit to track) and body (daily/weekly goals), how do you set it so that once in habits_detail, there's another field that updates? 
     -And importantly, how do you make sure that update is appended to the habit history, rather than modifying anything?
 
--(If not fixed by Monday, wtf happened to my django?)
-
 - for workflow purposes, is it best to liveshare and have one project folder, or continue to push/pull individually? And if so, is it necessary to run pipenv, install django etc on each project
