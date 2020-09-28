@@ -10,6 +10,8 @@ class HabitForm(ModelForm):
             'body',
         ]
 
+class HabitUpdate()
+
 
 # class HabitSearchForm(Form):
 #     SEARCH = [
