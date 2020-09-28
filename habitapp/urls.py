@@ -27,6 +27,8 @@ urlpatterns = [
     # path('habits/update/<int:pk>/',
     #      habits_views.habits_update, name='habits_update'),
     # path('habits/search/', habits_views.habits_search, name='habits_search'),
+    path('users/login/', users_views.users_login, name='users_login'),
+    path('users/logout/', users_views.users_logout, name='users_logout')
 ]
 
 if settings.DEBUG:
