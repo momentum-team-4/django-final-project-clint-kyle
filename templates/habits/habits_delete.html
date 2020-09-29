@@ -1,16 +1,14 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 
-{% load static%}
-<html lang="en">
+{% block content %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delete A Habit</title>
-</head>
+<h2 class='pageTitle'>Delete This Habit?</h2>
 
-<body>
-    {% block content %}
-    {% endblock *}
-</body>
-</html>
+<form method="POST">
+    {% csrf_token %}
+
+    {{ form.as_p}}
+    <input type='submit' value='Delete Habit'>
+</form>
+
+{% endblock %}

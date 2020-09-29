@@ -3,3 +3,20 @@
     box-sizing: border-box;
     font-family: 'Courier New', Courier, monospace;
 }
+
+.habitsList {
+    display: flex;
+    flex-flow: wrap;
+}
+
+.habit {
+    width: 25%;
+    height: auto;
+    display: flex;
+    flex-flow: column;
+    padding: 1rem;
+    margin: 1rem;
+    font-size: 1.5rem;
+    border: solid 2px black;
+    box-shadow: 5px 10px 5px;
+}

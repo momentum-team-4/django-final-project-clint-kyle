@@ -20,15 +20,19 @@ from habits import views as habits_views
 from users import views as users_views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', habits_views.habits_list, name='habits_list'),
-    path('habits/<int:pk>/', habits_views.habits_detail, name='habits_detail'),
-    path('habits/create/', habits_views.habits_create, name='habits_create'),
-    # path('habits/update/<int:pk>/',
-    #      habits_views.habits_update, name='habits_update'),
+    path('admin/', admin.site.urls),  # admin
+    path('', habits_views.habits_list, name='habits_list'),  # main/list
+    path('habits/<int:pk>/', habits_views.habits_detail,
+         name='habits_detail'),  # details
+    path('habits/create/', habits_views.habits_create,
+         name='habits_create'),  # habits_create
+    path('habits/update/<int:pk>/',
+         habits_views.habits_update, name='habits_update'),  # habits_update
     # path('habits/search/', habits_views.habits_search, name='habits_search'),
-    path('users/login/', users_views.users_login, name='users_login'),
-    path('users/logout/', users_views.users_logout, name='users_logout')
+    path('habits/delete/<int:pk>/',
+         habits_views.habits_delete, name='habits_delete'),
+    path('users/login/', users_views.users_login, name='users_login'),  # login
+    path('users/logout/', users_views.users_logout, name='users_logout')  # logout
 ]
 
 if settings.DEBUG:

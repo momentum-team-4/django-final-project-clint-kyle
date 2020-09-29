@@ -33,3 +33,31 @@ def habits_create(request):
             return redirect(to='habits_list')
 
     return render(request, "habits/habits_create.html", {"form": form})
+
+
+def habits_update(request, pk):
+    habit = get_object_or_404(Habit, pk=pk)
+
+    if request.method == 'GET':
+        form = HabitForm(instance=habit)
+
+    else:
+        form = HabitForm(data=request.POST, instance=habit)
+
+        if form.is_valid():
+            form.save()
+            success(request, 'Habit has been updated!')
+            return redirect(to='habits_list')
+
+    return render(request, 'habits/habits_update.html', {'form': form})
+
+
+def habits_delete(request, pk):
+    if request.method == 'GET':
+        return render(request, 'habits/habits_delete.html')
+
+    else:
+        habit = get_object_or_404(Habit, pk=pk)
+        habit.delete()
+        success(request, 'Habit has been deleted!')
+        return redirect(to='habits_list')

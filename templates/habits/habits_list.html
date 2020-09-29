@@ -1,5 +1,7 @@
+{% extends 'base.html' %}
+
 {% block content %}
-<h1 class='pageTitle'>Habits</h1>
+<h2 class='pageTitle'>Habits</h2>
 
 <div class='habitsList'>
 
@@ -11,5 +13,8 @@
     </div>
     {% endfor %}
 </div>
+
+<button class='newHabit'><a href="{% url 'habits_create' %}" style="text-decoration:none">Add a Habit</a></button>
+
 
 {% endblock %}
