@@ -2,7 +2,7 @@ from django.forms import ModelForm, Form, CharField, ChoiceField
 from .models import Habit
 
 
-class CreateHabit(ModelForm):
+class HabitForm(ModelForm):
     class Meta:
         model = Habit
         fields = [

@@ -8,7 +8,7 @@ class Habit(models.Model):
     habit_title = models.CharField(max_length=255, null=False, blank=False)
     habit_amount = models.IntegerField(null=False, blank=False)
     habit_target = models.CharField(max_length=255, null=False, blank=False)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    # user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     # daily_entry = []
 
