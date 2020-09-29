@@ -1,12 +1,15 @@
 {% extends "base.html" %}
 
-<h1>Habit Details</h1>
+<h2>Habit Details</h2>
 
 {% block content %}
 
 
 <h2>{{ habit.title }}</h2>
 <p>{{ habit.body }}</p>
-<a href="{% url 'habits_list' %}">Habits</a>
-
+<div class='detailsLinks'>
+    <button><a href="{% url  'habits_delete' pk=habit.pk %}" style="text-decoration:none">Delete this habit</a></button>
+    <button><a href="{% url  'habits_update' pk=habit.pk %}" style="text-decoration:none">Edit this habit</a></button>
+    <button><a href="{% url 'habits_list' %}" style="text-decoration:none">Back to the rest of your habits</a></button>
+</div>
 {% endblock %}
