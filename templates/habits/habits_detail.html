@@ -5,8 +5,10 @@
 {% block content %}
 
 
-<h2>{{ habit.title }}</h2>
-<p>{{ habit.body }}</p>
+<h2>Habit: {{ habit.habit_title }}</h2>
+<p>Habit Amount: {{ habit.habit_amount }}</p>
+<p>Habit Target: {{ habit.habit_target }}</p>
+
 <div class='detailsLinks'>
     <button><a href="{% url  'habits_delete' pk=habit.pk %}" style="text-decoration:none">Delete this habit</a></button>
     <button><a href="{% url  'habits_update' pk=habit.pk %}" style="text-decoration:none">Edit this habit</a></button>
