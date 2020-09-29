@@ -6,8 +6,9 @@ class HabitForm(ModelForm):
     class Meta:
         model = Habit
         fields = [
-            'title',
-            'body',
+            'habit_title',
+            'habit_amount',
+            'habit_target',
         ]
 
 # class HabitUpdate()
