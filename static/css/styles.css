@@ -9,14 +9,19 @@
     flex-flow: wrap;
 }
 
-.habit {
+.habitForm {
     width: 25%;
     height: auto;
     display: flex;
     flex-flow: column;
-    padding: 1rem;
+    /* padding: 1rem; */
     margin: 1rem;
+    margin-bottom: 2rem;
     font-size: 1.5rem;
     border: solid 2px black;
     box-shadow: 5px 10px 5px;
+}
+
+.habitForm:hover {
+    box-shadow: 3px 5px 3px;
 }

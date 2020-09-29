@@ -6,11 +6,14 @@
 <div class='habitsList'>
 
     {% for habit in habits %}
-    <div class='habit'>
-        <h2 class='habitTitle'><a href="{% url 'habits_detail' pk=habit.pk %}"
-                style="text-decoration:none">{{ habit.title }}</a></h2>
-        <p class='habitBody'>{{ habit.body|truncatewords:10 }}</p>
-    </div>
+    <form class='habitForm'>
+        <button type='submit' formaction="{% url 'habits_detail' pk=habit.pk %}">
+            <div class='habit'>
+                <h2 class='habitTitle'>{{ habit.title }}</h2>
+                <p class='habitBody'>{{ habit.body|truncatewords:10 }}</p>
+            </div>
+        </button>
+    </form>
     {% endfor %}
 </div>
 
