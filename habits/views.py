@@ -1,13 +1,15 @@
+from django.core.serializers import serialize
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.messages import success, error
-from .models import Habit
+from django.contrib.auth.decorators import login_required
+from .models import Habit, Activity
 from .forms import HabitForm
 
 # Create your views here.
 
-
+@login_required
 def habits_list(request):
-    habits = Habit.objects.all()
+    habits = Habit.objects.filter(user=request.user)
     return render(request, "habits/habits_list.html", {"habits": habits})
 
 
@@ -15,6 +17,21 @@ def habits_detail(request, pk):
     habit = get_object_or_404(Habit, pk=pk)
     return render(request, "habits/habits_detail.html", {"habit": habit})
 
+
+def activity_list(request, pk):
+    pass
+
+def activity_detail(request, pk):
+    pass
+
+def activity_log(request, pk):
+    pass
+
+def activity_visualize_history(request, pk):
+    activities = Activity.objects.filter(habit=pk)
+    activities_js = serialize("json", activities)
+    
+    return render(request, "habits/activities/visualize.html", {"activities": activities_js})
 
 def habits_create(request):
     # habit = get_object_or_404(request, pk=pk)

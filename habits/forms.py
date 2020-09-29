@@ -2,12 +2,13 @@ from django.forms import ModelForm, Form, CharField, ChoiceField
 from .models import Habit
 
 
-class HabitForm(ModelForm):
+class HabitCreateForm(ModelForm):
     class Meta:
         model = Habit
         fields = [
-            'title',
-            'body',
+            'description',
+            'target_amt',
+            'target_activity',
         ]
 
 # class HabitUpdate()
