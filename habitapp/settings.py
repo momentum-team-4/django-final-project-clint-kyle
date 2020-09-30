@@ -128,6 +128,10 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
 
+# Initial login and redirect for @login_required
+LOGIN_URL = '/users/login/'
+LOGIN_REDIRECT_URL = '/users/create/'
+
 # Custom user model
 
 AUTH_USER_MODEL = 'users.User'

@@ -7,6 +7,7 @@ from .forms import HabitForm
 
 # Create your views here.
 
+
 @login_required
 def habits_list(request):
     habits = Habit.objects.all()
@@ -16,6 +17,7 @@ def habits_list(request):
 def habits_detail(request, pk):
     habit = get_object_or_404(Habit, pk=pk)
     return render(request, "habits/habits_detail.html", {"habit": habit})
+
 
 '''
 def activity_list(request, pk):
@@ -33,6 +35,7 @@ def activity_visualize_history(request, pk):
     
     return render(request, "habits/activities/visualize.html", {"activities": activities_js})
 '''
+
 
 def habits_create(request):
     # habit = get_object_or_404(request, pk=pk)
@@ -79,3 +82,22 @@ def habits_delete(request, pk):
         habit.delete()
         success(request, 'Habit has been deleted!')
         return redirect(to='habits_list')
+
+
+# def habits_update(request, pk):
+#     habit = get_object_or_404(Habit, pk=pk)
+
+#     if request.method == 'GET':
+#         form = HabitUpdate(instance=habit)
+
+#     else:
+#         form = HabitUpdate(data=request.POST, instance=habit)
+
+#         if form.is_valid():
+#             instance = form.save(commit=False)
+#             instance.history.append(form.cleaned_data['daily_entry'])
+#             instance.save()
+#             success(request, 'Habit has been updated!')
+#             return redirect(to='habits_list')
+
+#     return render(request, 'habits/habits_update.html', {'form': form})

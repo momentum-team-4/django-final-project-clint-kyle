@@ -31,6 +31,8 @@ urlpatterns = [
     # path('habits/search/', habits_views.habits_search, name='habits_search'),
     path('habits/delete/<int:pk>/',
          habits_views.habits_delete, name='habits_delete'),
+    path('users/create/', users_views.users_create,
+         name='users_create'),  # create account
     path('users/login/', users_views.users_login, name='users_login'),  # login
     path('users/logout/', users_views.users_logout, name='users_logout')  # logout
 ]
