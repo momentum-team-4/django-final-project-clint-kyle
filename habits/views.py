@@ -3,7 +3,7 @@ from django.contrib.messages import success, error
 from django.contrib.auth.decorators import login_required
 from django.core.serializers import serialize
 from .models import Habit, Amount
-from .forms import HabitForm
+from .forms import HabitForm, HabitUpdate
 
 # Create your views here.
 

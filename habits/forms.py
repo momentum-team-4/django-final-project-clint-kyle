@@ -16,7 +16,10 @@ class HabitUpdate(HabitForm):
     class Meta:
         model = Habit
         fields = [
-            'daily_entry'
+            'habit_title',
+            'habit_amount',
+            'habit_target',
+            'daily_entry',
         ]
 
 

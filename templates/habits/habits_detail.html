@@ -10,9 +10,7 @@
 <p>Habit Target: {{ habit.habit_target }}</p>
 <p>Habit Remaining: {{ habit.habit_remaining }}</p>
 
-{% for el in habit.history %}
-<p>{{ el }}</p>
-{% endfor %}
+<p>Habit History: </p>{{ habit.history }}
 
 
 <div class='habitTiming'>

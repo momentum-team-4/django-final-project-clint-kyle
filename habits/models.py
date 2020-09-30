@@ -30,6 +30,7 @@ class Habit(models.Model):
         nice_updated = self.updated_at - timedelta(hours=4)
         return nice_updated.strftime("Last updated on %A at %I:%M %p")
 
+    daily_entry = models.IntegerField(null=True, blank=True)
     history = []
 
     def __str__(self):
