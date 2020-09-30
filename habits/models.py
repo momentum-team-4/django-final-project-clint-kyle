@@ -29,7 +29,8 @@ class Habit(models.Model):
     def niceUpdated(self):
         nice_updated = self.updated_at - timedelta(hours=4)
         return nice_updated.strftime("Last updated on %A at %I:%M %p")
-    # daily_entry = []
+
+    history = []
 
     def __str__(self):
         return f"{self.habit_title}"

@@ -11,7 +11,13 @@ class HabitForm(ModelForm):
             'habit_target',
         ]
 
-# class HabitUpdate()
+
+class HabitUpdate(HabitForm):
+    class Meta:
+        model = Habit
+        fields = [
+            'daily_entry'
+        ]
 
 
 # class HabitSearchForm(Form):

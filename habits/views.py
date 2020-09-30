@@ -60,13 +60,15 @@ def habits_update(request, pk):
     habit = get_object_or_404(Habit, pk=pk)
 
     if request.method == 'GET':
-        form = HabitForm(instance=habit)
+        form = HabitUpdate(instance=habit)
 
     else:
-        form = HabitForm(data=request.POST, instance=habit)
+        form = HabitUpdate(data=request.POST, instance=habit)
 
         if form.is_valid():
-            form.save()
+            instance = form.save(commit=False)
+            instance.history.append(form.cleaned_data['daily_entry'])
+            instance.save()
             success(request, 'Habit has been updated!')
             return redirect(to='habits_list')
 
