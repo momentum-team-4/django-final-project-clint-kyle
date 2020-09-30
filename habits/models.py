@@ -17,9 +17,6 @@ class Habit(models.Model):
     habit_target = models.IntegerField(null=False, blank=False)
     daily_entry = models.ManyToManyField(DailyEntry)
 
-    # def habit_remaining(self):
-    #     return int(float(self.habit_target)) - int(float(self.habit_amount))
-
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     # When the habit was created

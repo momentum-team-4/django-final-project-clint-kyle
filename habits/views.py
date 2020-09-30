@@ -63,8 +63,10 @@ def habits_create(request):
         form = HabitForm(data=request.POST)
 
         if form.is_valid():
+            temp = form.save(commit=False)
+            temp.user = request.user
 
-            form.save()
+            temp.save()
 
             success(request, "Your note was created!")
             return redirect(to='habits_list')
