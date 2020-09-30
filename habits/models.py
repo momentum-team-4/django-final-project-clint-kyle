@@ -9,7 +9,11 @@ from datetime import datetime, timedelta
 class Habit(models.Model):
     habit_title = models.CharField(max_length=255, null=False, blank=False)
     habit_amount = models.IntegerField(null=False, blank=False)
-    habit_target = models.CharField(max_length=255, null=False, blank=False)
+    habit_target = models.IntegerField(null=False, blank=False)
+
+    def habit_remaining(self):
+        return int(float(self.habit_target)) - int(float(self.habit_amount))
+
     # user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     # When the habit was created
