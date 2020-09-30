@@ -8,13 +8,14 @@ from datetime import datetime, timedelta
 
 class Habit(models.Model):
     habit_title = models.CharField(max_length=255, null=False, blank=False)
-    habit_amount = models.IntegerField(null=False, blank=False)
     habit_target = models.IntegerField(null=False, blank=False)
+    daily_entry = models.ManyToManyField(
+        DailyEntry, null=False, blank=False, on_delete=models.CASCADE)
 
     def habit_remaining(self):
         return int(float(self.habit_target)) - int(float(self.habit_amount))
 
-    # user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     # When the habit was created
     created_at = models.DateTimeField(auto_now_add=True)
@@ -30,15 +31,15 @@ class Habit(models.Model):
         nice_updated = self.updated_at - timedelta(hours=4)
         return nice_updated.strftime("Last updated on %A at %I:%M %p")
 
-    daily_entry = models.IntegerField(null=True, blank=True)
-    history = []
+    # daily_entry = models.IntegerField(null=True, blank=True)
+    # history = []
 
     def __str__(self):
         return f"{self.habit_title}"
 
 
-class Amount(models.Model):
-    habit = models.ForeignKey(
-        Habit, on_delete=models.CASCADE, null=False, blank=False)
-    current_amount = models.IntegerField(null=False, blank=False)
-    date = models.DateField(auto_now_add=True)
+class DailyEntry(models.Model):
+    class Meta:
+        unique_together['today_amount', 'date']
+    today_amount = models.IntegerField(null=False, blank=False)
+    date = models.DateField(auto_now=True, editable=True)

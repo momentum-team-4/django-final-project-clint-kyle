@@ -1,5 +1,5 @@
 from django.forms import ModelForm, Form, CharField, ChoiceField
-from .models import Habit
+from .models import Habit, DailyEntry
 
 
 class HabitForm(ModelForm):
@@ -7,19 +7,16 @@ class HabitForm(ModelForm):
         model = Habit
         fields = [
             'habit_title',
-            'habit_amount',
             'habit_target',
         ]
 
 
-class HabitUpdate(HabitForm):
+class DailyEntry(ModelForm):
     class Meta:
-        model = Habit
+        model = DailyEntry
         fields = [
-            'habit_title',
-            'habit_amount',
-            'habit_target',
             'daily_entry',
+            'date',
         ]
 
 
