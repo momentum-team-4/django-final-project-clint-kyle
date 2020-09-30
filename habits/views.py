@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.messages import success, error
 from django.contrib.auth.decorators import login_required
 from django.core.serializers import serialize
-from .models import Habit, Amount
+from .models import Habit, DailyEntry
 from .forms import HabitForm, DailyEntry
 
 # Create your views here.
@@ -32,7 +32,7 @@ def activity_log(request, pk):
 def activity_visualize_history(request, pk):
     activities = Activity.objects.filter(habit=pk)
     activities_js = serialize("json", activities)
-    
+
     return render(request, "habits/activities/visualize.html", {"activities": activities_js})
 '''
 
@@ -41,21 +41,20 @@ def habits_update(request, pk):
     habit = get_object_or_404(Habit, pk=pk)
 
     if request.method == 'GET':
-        form = Habit(instance=habit)
+        form = HabitForm(instance=habit)
 
     else:
-        form = Habit(data=request.POST, instance=habit)
+        form = HabitForm(data=request.POST, instance=habit)
 
         if form.is_valid():
             form.save()
-            alert(request, 'Habit has been updated!')
+            success(request, 'Habit has been updated!')
             return redirect(to='habits_list')
 
     return render(request, 'habits/habits_update.html', {'form': form})
 
 
 def habits_create(request):
-    # habit = get_object_or_404(request, pk=pk)
 
     if request.method == "GET":
         form = HabitForm()
@@ -73,8 +72,8 @@ def habits_create(request):
     return render(request, "habits/habits_create.html", {"form": form})
 
 
-def daily_entry(request, pk):
-    habit = get_object_or_404(Habit, pk=pk)
+def daily_entry(request):
+    # habit = get_object_or_404(Habit, pk=pk)
 
     if request.method == 'GET':
         form = DailyEntry()
@@ -85,8 +84,9 @@ def daily_entry(request, pk):
         if form.is_valid():
             form.save()
             success(request, "New entry created")
-            return redirect(to='habits_detail')
-    return render(request, 'habit/habits_detail.html', {'form': form})
+            return redirect(to='habits_list')
+
+    return render(request, 'habits/daily_entry.html', {'form': form})
 
 
 def habits_delete(request, pk):

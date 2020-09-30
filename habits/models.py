@@ -5,15 +5,20 @@ from datetime import datetime, timedelta
 
 # Create your models here.
 
+class DailyEntry(models.Model):
+    class Meta:
+        unique_together = ['daily_entry', 'date']
+    daily_entry = models.IntegerField(null=False, blank=False)
+    date = models.DateTimeField(default=datetime.now, blank=True)
+
 
 class Habit(models.Model):
     habit_title = models.CharField(max_length=255, null=False, blank=False)
     habit_target = models.IntegerField(null=False, blank=False)
-    daily_entry = models.ManyToManyField(
-        DailyEntry, null=False, blank=False, on_delete=models.CASCADE)
+    daily_entry = models.ManyToManyField(DailyEntry)
 
-    def habit_remaining(self):
-        return int(float(self.habit_target)) - int(float(self.habit_amount))
+    # def habit_remaining(self):
+    #     return int(float(self.habit_target)) - int(float(self.habit_amount))
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
@@ -36,10 +41,3 @@ class Habit(models.Model):
 
     def __str__(self):
         return f"{self.habit_title}"
-
-
-class DailyEntry(models.Model):
-    class Meta:
-        unique_together['today_amount', 'date']
-    today_amount = models.IntegerField(null=False, blank=False)
-    date = models.DateField(auto_now=True, editable=True)
