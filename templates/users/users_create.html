@@ -1,14 +1,14 @@
-{% extends base.html %}
+{% extends 'base.html' %}
 
 {% block content %}
 
 <h1>Create Account</h1>
 
-<div>
-    <form action="(% url users_create %)" method='POST'>
-        {% csrf token%}
-</div>
-<button type="submit">Submit</button>
+<form method="POST" id="users_create">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Create Account">
 </form>
+
 
 {% endblock %}

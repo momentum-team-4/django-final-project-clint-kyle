@@ -6,9 +6,11 @@ from .forms import UserCreationForm
 from .models import User
 
 # Create your views here.
+
+
 def users_create(request):
     if request.method == "GET":
-        form =  UserCreationForm()
+        form = UserCreationForm()
 
     else:
         form = UserCreationForm(data=request.POST)
@@ -18,20 +20,21 @@ def users_create(request):
             success(request, "Account created.")
             return redirect(to='habits_list')
 
-    return render(request, "users/habits_create.html", {"form": form})
+    return render(request, "users/users_create.html", {"form": form})
 
 
 def users_login(request):
     if request.method == "POST":
-        username = request.POST['username']
-        password = request.POST['password']
+        username = request.POST.get('username')
+        password = request.POST.get('password')
         user = authenticate(request, username=username, password=password)
 
         if user is not None:
             login(request, user)
             success(request, "login succeeded.")
             return redirect(to="habits_list")
-
+        else:
+            error(request, 'bad username/password combination')
     return render(request, "users/users_login.html")
 
 
