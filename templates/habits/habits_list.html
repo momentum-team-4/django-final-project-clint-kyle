@@ -11,9 +11,10 @@
         <button type='submit' formaction="{% url 'habits_detail' pk=habit.pk %}">
             <div class='habit'>
                 <h2>Habit: {{ habit.habit_title }}</h2>
-                <p>Habit Amount: {{ habit.habit_amount }}</p>
+                <p>Current Amount: {{ habit.habit_amount }}</p>
                 <p>Habit Target: {{ habit.habit_target }}</p>
-                <p>Habit Remaining: {{ habit.habit_remaining }}</p>
+                <p>Remaining to Goal: {{ habit.habit_remaining }}</p>
+                <p>Click to Edit</p>
 
             </div>
         </button>

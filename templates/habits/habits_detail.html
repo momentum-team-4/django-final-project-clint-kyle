@@ -6,9 +6,9 @@
 
 
 <h2>Habit: {{ habit.habit_title }}</h2>
-<p>Habit Amount: {{ habit.habit_amount }}</p>
-<p>Habit Target: {{ habit.habit_target }}</p>
-<p>Habit Remaining: {{ habit.habit_remaining }}</p>
+<p>Current Amount: {{ habit.habit_amount }}</p>
+<p>Target: {{ habit.habit_target }}</p>
+<p>Remaining To Goal: {{ habit.habit_remaining }}</p>
 
 
 <div class='habitTiming'>
@@ -24,4 +24,6 @@
     <button><a href="{% url  'habits_update' pk=habit.pk %}" style="text-decoration:none">Edit this habit</a></button>
     <button><a href="{% url 'habits_list' %}" style="text-decoration:none">Back to the rest of your habits</a></button>
 </div>
+
+<!-- scripting -->
 {% endblock %}
