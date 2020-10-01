@@ -1,0 +1,40 @@
+.detailTitle {
+    margin-top: 2rem;
+}
+
+
+.hblock {
+    width: 50%;
+    height: auto;
+    display: flex;
+    flex-flow: column;
+    margin: 2rem 0 5rem;
+    font-size: 1.5rem;
+    border: solid 2px black;
+    box-shadow: 5px 10px 5px;
+    background-color: rgb(161, 195, 196);
+    padding: 1rem;
+}
+
+.actionbuttons a {
+    font-size: 1.25rem;
+}
+
+.actionbuttons button {
+    background-color: cadetblue;
+    border-radius: 5px;
+    box-shadow: 4px 7px 4px;
+}
+
+.actionbuttons button:hover {
+    box-shadow: 3px 5px 3px;
+}
+
+.hist h3 {
+    font-size: 2rem;
+}
+
+.hist p {
+    font-size: 1.5rem;
+    font-weight: bold;
+}

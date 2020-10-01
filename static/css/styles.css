@@ -2,11 +2,25 @@
     max-width: 100%;
     box-sizing: border-box;
     font-family: 'Courier New', Courier, monospace;
+    
 }
+
+body {
+    background:
+    linear-gradient(
+      rgba(200, 200, 200, 0.6),
+      rgba(200, 200, 200, 0.6)
+    ), url(https://rb.gy/dobaex);
+    background-size: cover;
+    
+}
+
+
 
 .habitsList {
     display: flex;
     flex-flow: wrap;
+    
 }
 
 .habitForm {
@@ -20,7 +34,8 @@
     font-size: 1.5rem;
     border: solid 2px black;
     box-shadow: 5px 10px 5px;
-    background-color: burlywood;
+    background-color: cadetblue;
+    
 }
 
 .habitForm:hover {
@@ -28,6 +43,6 @@
 }
 
 .habitForm button {
-    background-color: burlywood;
+    background-color: cadetblue;
     border-style: none;
 }

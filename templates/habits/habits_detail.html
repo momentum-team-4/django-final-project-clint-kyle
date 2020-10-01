@@ -1,23 +1,30 @@
 {% extends "base.html" %}
-
-<h2>Habit Details</h2>
-
+<div class='detailPage'>
 {% block content %}
 
+<!-- <h2 class='detailTitle'>Habit Details</h2> -->
 
-<h2>Habit: {{ habit.habit_title }}</h2>
-<p>Habit Target: {{ habit.habit_target }}</p>
+<div class='hblock'>
+    <div class='habitDetails'>
+        <h2>Habit: {{ habit.habit_title }}</h2>
+        <p>Daily Goal: {{ habit.habit_target }}</p>
+        <p>Remaining Today: {{ remaining_today }}</p>
+    </div>
 
-
-<div class='habitTiming'>
-    <p class='time'>{{ habit.niceUpdated }}</p>
+    <div class='habitTiming'>
+        <p class='time'>{{ habit.niceUpdated }}</p>
+        <p class='time'>{{ habit.niceCreated }}</p>
+    </div>
 </div>
 
-<div class='habitTiming'>
-    <p class='time'>{{ habit.niceCreated }}</p>
+<div class='hist'>
+<h3>Habit History:</h3>
+{% for entry in dailyentries %}
+<p>{{entry.niceDate}}: {{entry.daily_entry}}</p>
+{% endfor %}
 </div>
 
-<div class='detailsLinks'>
+<div class='actionbuttons'>
     <button><a href="{% url  'habits_delete' pk=habit.pk %}" style="text-decoration:none">Delete this habit</a></button>
 
     <button><a href="{% url  'habits_update' pk=habit.pk %}" style="text-decoration:none">Edit this habit</a></button>
@@ -27,10 +34,7 @@
     <button><a href="{% url 'habits_list' %}" style="text-decoration:none">Back to the rest of your habits</a></button>
 </div>
 
-<p>Remaining To Goal: {{ remaining_today }}</p>
-<h3>Log:</h3>
-{% for entry in dailyentries %}
-<p>{{entry.niceDate}}: {{entry.daily_entry}}</p>
-{% endfor %}
 
+
+</div>
 {% endblock %}

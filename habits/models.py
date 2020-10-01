@@ -46,7 +46,7 @@ class DailyEntry(models.Model):
 def most_recent_daily_entry(habit):
     entries = DailyEntry.objects.filter(habit=habit)
 
-    return entries.order_by('date').first()
+    return entries.order_by('date').last()
 
 
 def daily_habit_remaining(habit):

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2 class='pageTitle'>Habits</h2>
+<h2 class='pageTitle'>Your Daily Habits Are:</h2>
 
 
 <div class='habitsList'>
@@ -10,17 +10,20 @@
     <form class='habitForm'>
         <button type='submit' formaction="{% url 'habits_detail' pk=habit.pk %}">
             <div class='habit'>
-                <p>Habit Amount: {{ habit.habit_title }}</p>
-                <p>Habit Target: {{ habit.habit_target }}</p>
+                <p>Habit: {{ habit.habit_title }}</p>
+                <p>Daily Goal: {{ habit.habit_target }}</p>
+                <p>Click To Edit/View Details</p>
             </div>
         </button>
     </form>
     {% endfor %}
 </div>
 
+<div class='actionbuttons'>
 <button class='newHabit'><a href="{% url 'habits_create' %}" style="text-decoration:none">Add a Habit</a></button>
 
-<button class='logout'><a href="{% url 'users_logout' %}">Logout</a></button>
+<button class='logout'><a href="{% url 'users_logout' %}" style="text-decoration:none">Logout</a></button>
+</div>
 
 {% if messages %}
 <ul class="messages">
