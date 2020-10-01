@@ -27,7 +27,7 @@
     <button><a href="{% url 'habits_list' %}" style="text-decoration:none">Back to the rest of your habits</a></button>
 </div>
 
-<p>Remaining To Goal: {{ habit.habit_remaining }}</p>
+<p>Remaining To Goal: {{ remaining_today }}</p>
 <h3>Log:</h3>
 {% for entry in dailyentries %}
 <p>{{entry.niceDate}}: {{entry.daily_entry}}</p>

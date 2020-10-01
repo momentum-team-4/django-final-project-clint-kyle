@@ -1,4 +1,5 @@
 from django.db import models
+from django.shortcuts import get_object_or_404
 from users.models import User
 from datetime import datetime, timedelta
 
@@ -26,11 +27,6 @@ class Habit(models.Model):
         nice_updated = self.updated_at - timedelta(hours=4)
         return nice_updated.strftime("Last updated on %A at %I:%M %p")
 
-    most_recent = 0
-
-    def habit_remaining(self):
-        return int(float(self.habit_target)) - int(float(self.most_recent))
-
     def __str__(self):
         return f"{self.habit_title}"
 
@@ -45,3 +41,17 @@ class DailyEntry(models.Model):
     def niceDate(self):
         nice_date = self.date - timedelta(hours=4)
         return nice_date.strftime("Entry from %A at %I:%M %p")
+
+
+def most_recent_daily_entry(habit):
+    entries = DailyEntry.objects.filter(habit=habit)
+
+    return entries.order_by('date').first()
+
+
+def daily_habit_remaining(habit):
+    if most_recent_daily_entry(habit):
+        most_recent = most_recent_daily_entry(habit)
+        return habit.habit_target - most_recent.daily_entry
+    else:
+        return "All of it"

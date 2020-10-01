@@ -11,7 +11,7 @@ class HabitForm(ModelForm):
         ]
 
 
-class DailyEntry(ModelForm):
+class DailyEntryForm(ModelForm):
     class Meta:
         model = DailyEntry
         fields = [

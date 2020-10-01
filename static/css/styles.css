@@ -20,8 +20,14 @@
     font-size: 1.5rem;
     border: solid 2px black;
     box-shadow: 5px 10px 5px;
+    background-color: burlywood;
 }
 
 .habitForm:hover {
     box-shadow: 3px 5px 3px;
+}
+
+.habitForm button {
+    background-color: burlywood;
+    border-style: none;
 }
