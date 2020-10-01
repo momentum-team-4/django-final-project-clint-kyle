@@ -70,7 +70,7 @@ def habits_create(request):
 
             temp.save()
 
-            success(request, "Your note was created!")
+            success(request, "Your habit was created!")
             return redirect(to='habits_list')
 
     return render(request, "habits/habits_create.html", {"form": form})
