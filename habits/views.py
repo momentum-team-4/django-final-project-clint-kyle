@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.messages import success, error
 from django.contrib.auth.decorators import login_required
 from django.core.serializers import serialize
-from .models import Habit, DailyEntry
 from .forms import HabitForm, DailyEntry
+from .models import Habit, DailyEntry
 
 # Create your views here.
 
@@ -16,7 +16,8 @@ def habits_list(request):
 
 def habits_detail(request, pk):
     habit = get_object_or_404(Habit, pk=pk)
-    return render(request, "habits/habits_detail.html", {"habit": habit})
+    dailyentries = DailyEntry.objects.filter(habit=habit)
+    return render(request, "habits/habits_detail.html", {"habit": habit, 'dailyentries': dailyentries})
 
 
 '''
@@ -74,8 +75,7 @@ def habits_create(request):
     return render(request, "habits/habits_create.html", {"form": form})
 
 
-def daily_entry(request):
-    # habit = get_object_or_404(Habit, pk=pk)
+def daily_entry(request, pk):
 
     if request.method == 'GET':
         form = DailyEntry()
@@ -84,7 +84,11 @@ def daily_entry(request):
         form = DailyEntry(data=request.POST)
 
         if form.is_valid():
-            form.save()
+            habit = get_object_or_404(Habit, pk=pk)
+            entry = form.save(commit=False)
+            entry.habit = habit
+            habit.most_recent = entry.cleaned_data['daily_entry']
+            entry.save()
             success(request, "New entry created")
             return redirect(to='habits_list')
 
