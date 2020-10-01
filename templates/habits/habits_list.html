@@ -10,11 +10,8 @@
     <form class='habitForm'>
         <button type='submit' formaction="{% url 'habits_detail' pk=habit.pk %}">
             <div class='habit'>
-                <h2>Habit: {{ habit.habit_title }}</h2>
-                <p>Habit Amount: {{ habit.habit_amount }}</p>
+                <p>Habit Amount: {{ habit.habit_title }}</p>
                 <p>Habit Target: {{ habit.habit_target }}</p>
-                <p>Habit Remaining: {{ habit.habit_remaining }}</p>
-
             </div>
         </button>
     </form>
@@ -24,4 +21,13 @@
 <button class='newHabit'><a href="{% url 'habits_create' %}" style="text-decoration:none">Add a Habit</a></button>
 
 <button class='logout'><a href="{% url 'users_logout' %}">Logout</a></button>
+
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+    <li class="{{ message.tags }}">{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+
 {% endblock %}

@@ -6,9 +6,7 @@
 
 
 <h2>Habit: {{ habit.habit_title }}</h2>
-<p>Habit Amount: {{ habit.habit_amount }}</p>
 <p>Habit Target: {{ habit.habit_target }}</p>
-<p>Habit Remaining: {{ habit.habit_remaining }}</p>
 
 
 <div class='habitTiming'>
@@ -21,7 +19,18 @@
 
 <div class='detailsLinks'>
     <button><a href="{% url  'habits_delete' pk=habit.pk %}" style="text-decoration:none">Delete this habit</a></button>
+
     <button><a href="{% url  'habits_update' pk=habit.pk %}" style="text-decoration:none">Edit this habit</a></button>
+
+    <button><a href="{% url  'daily_entry' pk=habit.pk %}" style="text-decoration:none">Make Daily Entry</a></button>
+
     <button><a href="{% url 'habits_list' %}" style="text-decoration:none">Back to the rest of your habits</a></button>
 </div>
+
+<p>Remaining To Goal: {{ remaining_today }}</p>
+<h3>Log:</h3>
+{% for entry in dailyentries %}
+<p>{{entry.niceDate}}: {{entry.daily_entry}}</p>
+{% endfor %}
+
 {% endblock %}

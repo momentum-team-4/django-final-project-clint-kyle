@@ -2,21 +2,23 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.messages import success, error
 from django.contrib.auth.decorators import login_required
 from django.core.serializers import serialize
-from .models import Habit, Amount
-from .forms import HabitForm
+from .forms import HabitForm, DailyEntryForm
+from .models import *
 
 # Create your views here.
 
 
 @login_required
 def habits_list(request):
-    habits = Habit.objects.all()
+    habits = Habit.objects.filter(user=request.user)
     return render(request, "habits/habits_list.html", {"habits": habits})
 
 
 def habits_detail(request, pk):
     habit = get_object_or_404(Habit, pk=pk)
-    return render(request, "habits/habits_detail.html", {"habit": habit})
+    dailyentries = DailyEntry.objects.filter(habit=habit)
+    remaining_today = daily_habit_remaining(habit)
+    return render(request, "habits/habits_detail.html", {"habit": habit, 'dailyentries': dailyentries, 'remaining_today': remaining_today})
 
 
 '''
@@ -32,28 +34,9 @@ def activity_log(request, pk):
 def activity_visualize_history(request, pk):
     activities = Activity.objects.filter(habit=pk)
     activities_js = serialize("json", activities)
-    
+
     return render(request, "habits/activities/visualize.html", {"activities": activities_js})
 '''
-
-
-def habits_create(request):
-    # habit = get_object_or_404(request, pk=pk)
-
-    if request.method == "GET":
-        form = HabitForm()
-
-    else:
-        form = HabitForm(data=request.POST)
-
-        if form.is_valid():
-
-            form.save()
-
-            success(request, "Your note was created!")
-            return redirect(to='habits_list')
-
-    return render(request, "habits/habits_create.html", {"form": form})
 
 
 def habits_update(request, pk):
@@ -71,6 +54,45 @@ def habits_update(request, pk):
             return redirect(to='habits_list')
 
     return render(request, 'habits/habits_update.html', {'form': form})
+
+
+def habits_create(request):
+
+    if request.method == "GET":
+        form = HabitForm()
+
+    else:
+        form = HabitForm(data=request.POST)
+
+        if form.is_valid():
+            temp = form.save(commit=False)
+            temp.user = request.user
+
+            temp.save()
+
+            success(request, "Your note was created!")
+            return redirect(to='habits_list')
+
+    return render(request, "habits/habits_create.html", {"form": form})
+
+
+def daily_entry(request, pk):
+
+    if request.method == 'GET':
+        form = DailyEntryForm()
+
+    else:
+        form = DailyEntryForm(data=request.POST)
+
+        if form.is_valid():
+            habit = get_object_or_404(Habit, pk=pk)
+            entry = form.save(commit=False)
+            entry.habit = habit
+            entry.save()
+            success(request, "New entry created")
+            return redirect(to='habits_list')
+
+    return render(request, 'habits/daily_entry.html', {'form': form})
 
 
 def habits_delete(request, pk):
